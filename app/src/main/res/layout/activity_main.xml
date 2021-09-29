@@ -10,12 +10,10 @@
         android:id="@+id/etArtistName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginTop="17dp"
         android:ems="10"
         android:hint="@string/hintName"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,25 +23,35 @@
         android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/btnAdd"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/etArtistName" />
 
     <Spinner
         android:id="@+id/spinnerGenres"
         android:layout_width="389dp"
         android:layout_height="30dp"
         android:layout_marginStart="18dp"
-        android:layout_marginTop="207dp"
+        android:layout_marginTop="29dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="35dp"
         android:entries="@array/genres"
-        app:layout_constraintBottom_toTopOf="@+id/etArtistName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/ArtistList"
+        android:layout_width="402dp"
+        android:layout_height="397dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
