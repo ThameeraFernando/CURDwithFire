@@ -1,18 +1,27 @@
 package com.example.curdwithfire;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     Spinner spinner;
     Context context;
     DatabaseReference databaseReference;
+    ListView listView;
+    List<Artist> artistList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         editText=findViewById(R.id.etArtistName);
         button=findViewById(R.id.btnSubmit);
         spinner=findViewById(R.id.spinnerGenres);
+        listView =findViewById(R.id.ArtistList);
+        artistList=new ArrayList<>();
         context =this;
         databaseReference= FirebaseDatabase.getInstance().getReference("artist");
 
@@ -42,6 +55,31 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                artistList.clear();
+                for (DataSnapshot artistSnapshot: snapshot.getChildren()){
+                    Artist artist=artistSnapshot.getValue(Artist.class);
+                    artistList.add(artist);
+
+                }
+                ArtistAdaptor artistAdaptor=new ArtistAdaptor(MainActivity.this,artistList);
+                listView.setAdapter(artistAdaptor);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     private void addArtist(){
         String name=editText.getText().toString().trim();
         String genre=spinner.getSelectedItem().toString();
