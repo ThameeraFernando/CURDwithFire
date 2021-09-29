@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CURDwithFire</string>
+    <string name="btnAdd">Add</string>
+    <string name="hintName">Enter a name</string>
+    <array name="genres">
+        <item>Rock</item>
+        <item>Pop</item>
+        <item>Sufi</item>
+        <item>Folk</item>
+    </array>
+</resources>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "116172100898",
+    "project_id": "curdwithfire",
+    "storage_bucket": "curdwithfire.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116172100898:android:292de611a5658120db417b",
+        "android_client_info": {
+          "package_name": "com.example.curdwithfire"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "116172100898-4q0b8b8aluabjfcq7pe6lhaiqrc6t1b3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB897TebAhwcInktQZhw2VdXUD7LZW6ggo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "116172100898-4q0b8b8aluabjfcq7pe6lhaiqrc6t1b3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
