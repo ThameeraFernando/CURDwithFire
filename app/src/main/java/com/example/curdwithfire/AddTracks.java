@@ -1,5 +1,6 @@
 package com.example.curdwithfire;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -14,8 +15,14 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddTracks extends AppCompatActivity {
 
@@ -27,6 +34,7 @@ public class AddTracks extends AppCompatActivity {
     Context context;
 
     DatabaseReference databaseReference;
+    List<Track> tracks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +49,7 @@ public class AddTracks extends AppCompatActivity {
         context=this;
 
 
-
+        tracks=new ArrayList<>();
         Intent intent=getIntent();
        String name= intent.getStringExtra(MainActivity.ARTIST_NAME);
         String id=intent.getStringExtra(MainActivity.ARTIST_ID);
@@ -74,4 +82,31 @@ public class AddTracks extends AppCompatActivity {
             }
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                tracks.clear();
+                for(DataSnapshot Tracksnapshot: snapshot.getChildren()){
+                    Track track=Tracksnapshot.getValue(Track.class);
+                    tracks.add(track);
+
+                }
+                TrackAdaptor trackAdaptor=new TrackAdaptor(AddTracks.this,tracks);
+                listView.setAdapter(trackAdaptor);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
 }
+
+
