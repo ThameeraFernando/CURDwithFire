@@ -2,6 +2,8 @@
     <string name="app_name">CURDwithFire</string>
     <string name="btnAdd">Add</string>
     <string name="hintName">Enter a name</string>
+    <string name="btnUpdate">Update</string>
+    <string name="btnDelete">Delete</string>
     <array name="genres">
         <item>Rock</item>
         <item>Pop</item>
