@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CURDwithFire">
         <activity
+            android:name=".AddTracks"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
